@@ -1,6 +1,5 @@
-body{
-
-    background-image: url("pexels-suzyhazelwood-1629236.jpg");
+.body{
+    background-image: url("image/pexels-suzyhazelwood-1629236.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -8,27 +7,37 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 20px;
 }
-.container div input, .container div label {
+.containerr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}
+.container div input, .container div label,.containerr div input, .containerr div label , select {
     display: flex;
     margin:5px 0;
-    border-radius: 10px;
+    border-radius: 8px;
     border: none;
     padding: 0 10px ;
     font-family: sans-serif;
     font-size: 18px;
 }
 
-.container div input{
-    height: 40px;
+.container div input,.containerr div input{
+    height: 35px;
     width: 250px;
+}
+select{
+    height: 35px;
+    width: 270px;
 }
 .container div {
     margin-bottom: 15px;
 }
 #submit{
-    padding: 15px;
+    padding: 10px;
     margin-top: 10px;
     width: 270px;
     border-radius: 10px;
@@ -37,8 +46,110 @@ body{
     color: white;
     cursor: pointer;
 }
-form{
-    padding: 30px 40px ;
+#login{
+    width: 270px;
+    background-color: transparent;
+    font-family: sans-serif;
+    color: #295246 ;
+    font-size: 15px;
+    cursor: pointer;
+}
+.form1{
+
+    padding: 20px 40px  ;
     border-radius: 20px;
     background-color: rgba(256, 256, 256,0.7);
+}
+.profil{
+    text-align: center;
+    width: 250px;
+    height: 350px;
+}
+.name{
+    font-size: 20px;
+    font-family: sans-serif;
+}
+.info p{
+    font-family: sans-serif;
+}
+.body3{
+    margin: auto;
+}
+.about{
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+.firstlastname, .coursefaculty, .firstlastname div input, .coursefaculty div select, .assess, .assess div input{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 ;
+}
+.firstlastname div input, .coursefaculty div select, .assess div input{
+    width: 250px;
+    height: 30px;
+    margin: 0 30px;
+    border-radius: 8px;
+    border: #295246 solid 1px;
+    font-size: 18px;
+}
+.firstlastname div label, .coursefaculty div label, .assess div label, form button{
+    margin: 0 30px;
+
+}
+.add button{
+    padding: 10px;
+    margin-top: 15px;
+    width: 255px;
+    border-radius: 8px;
+    border: none;
+    background-color: #295246;
+    color: white;
+    height: 40px;
+    cursor: pointer;
+}
+.add,h2{
+    font-family: sans-serif;
+}
+h2{
+    text-align: center;
+}
+.add{
+    margin-left: 180px;
+}
+.coursefaculty div select{
+    height: 35px;
+    width: 255px;
+}
+.table{
+    display: flex;
+    justify-content: center;
+}
+table{
+    width: 70%;
+    font-family: sans-serif;
+    font-size: 25px;
+}
+table{
+    text-align: center;
+}
+th{
+    background-color:  #1bab80;
+    height: 30px;
+    padding: 10px;
+    
+}
+tr td{
+    margin: 10px 0;
+}
+.delete, .edit{
+    background-color: red;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 25px;
+}
+.edit{
+    background-color: #1bab80;
 }

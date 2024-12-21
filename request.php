@@ -1,79 +1,31 @@
 <?php
 session_start();
-// if ($_SERVER["REQUEST_METHOD"] === "POST") {
-//     var_dump($_POST);
-// } else {
-//     echo "No data received.";
-// }
-$firstname = $_POST["firstname"];
-$lastname = $_POST["lastname"];
-$email = $_POST["email"];
-$age = $_POST["age"];
-$address = $_POST["address"];
-$checkemail= $email;
-$servername ="localhost";
-$username = "root";
-$password = "";
-
-$mycon = mysqli_connect($servername, $username, $password,"userstest");
-if (!$mycon) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-// $mysqldb = "CREATE DATABASE userstest";
-// if (mysqli_query($mycon, $mysqldb)) {
-//     echo "Database created successfully";
-//   } else {
-//     echo "Error creating database: " . mysqli_error($mycon);
-//   }
-
-// $mysqltb = 'CREATE TABLE aboutuser if not exists(
-//     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-//     firstname VARCHAR(30) NOT NULL,
-//     lastname VARCHAR(30) NOT NULL,
-//     email VARCHAR(50),
-//     age int(3) NOT NULL,
-//     address varchar(30) NOT NULL
-//     )';
+include "classpost.php";
 
 
-// if (mysqli_query($mycon, $mysqltb)) {
-//     echo "Table created successfully";
-//     } else {
-//     echo "Error creating table: " . mysqli_error($mycon);
-// }
-      
+if( (isset( $_POST['emaillogin']) and !empty($_POST['emaillogin'])) or ( isset( $_POST['passwordlogin']) and !empty($_POST['passwordlogin']))){
+    $emaillogin = $_POST["emaillogin"];
+    $passwordlogin = $_POST["passwordlogin"];
+    User::getFromDB($emaillogin,$passwordlogin);
+    header('Location: adminuser.php');
 
-$select = mysqli_query($mycon,"SELECT * FROM `aboutuser` WHERE email = '$checkemail'");
+    
+}else if(isset($_POST["login"])) {
+    header('Location: login.php');
+} else{
+    $firstname = $_POST["firstname"];
+    $lastname = $_POST["lastname"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $age = $_POST["age"];
+    $address = $_POST["address"];
+    $image = $_FILES["image"]["name"];
+    $role = $_POST["role"];
 
-if(mysqli_num_rows($select)>0) {
-    $_SESSION['error'] = "that email is alresdy being used"; 
-}else{
+    // $added= mysqli_query($mycon,"ALTER TABLE `aboutuser` ADD role VARCHAR(5)  after `image`");
 
-    $insert = "INSERT INTO `aboutuser` (firstname, lastname, email, age, address) VALUES ('$firstname','$lastname','$email','$age','$address')";
-    if(mysqli_query($mycon, $insert)) {
-        echo "Records inserted successfully.";
-    } else{
-        echo "ERROR: Could not able to execute $insert. " . mysqli_error($mycon);
-    }
-    $_SESSION['perfect'] = "you registered successfully"; 
-}
+    User::addToDB($firstname,$lastname,$email,$password,$age,$address,$image,$role);
+    header('Location: index.php');
 
+}   
 
-
-if($_POST['firstname'] == ""){
-    $_SESSION['firsterror'] = "the field FIRSTNAME must not be empty"; 
-} 
-if($_POST['lastname'] == ""){
-    $_SESSION['lasterror'] = "the field LASTNAME must not be empty"; 
-}
-if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-    $_SESSION['emailerror'] = "that is not an EMAIL address";
-}
-if($_POST['age'] == ""){
-    $_SESSION['ageerror'] = "the field AGE must not be empty"; 
-}
-if($_POST['address'] == ""){
-    $_SESSION['addresserror'] = "the field ADDRESS must not be empty"; 
-}
-header('Location: index.php');
